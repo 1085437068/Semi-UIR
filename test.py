@@ -14,7 +14,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0,1"
 
 bz = 1
 model_root = 'pretrained/model.pth'
-input_root = 'data/test/benchmarkA/'
+input_root = 'data/UIEB/test/benchmarkA'
 save_path = 'result/benchmarkA'
 if not os.path.isdir(save_path):
     os.makedirs(save_path)
@@ -23,7 +23,7 @@ Mydata_ = TestData(input_root)
 data_load = data.DataLoader(Mydata_, batch_size=bz)
 
 model = AIMnet().cuda()
-model = nn.DataParallel(model, device_ids=[0, 1])
+model = nn.DataParallel(model, device_ids=[0])
 optimizer = AdamP(model.parameters(), lr=2e-4, betas=(0.9, 0.999), weight_decay=1e-4)
 model.load_state_dict(checkpoint['state_dict'])
 optimizer.load_state_dict(checkpoint['optimizer_dict'])

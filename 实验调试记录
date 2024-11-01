@@ -1,0 +1,9 @@
+1.数据集制作：参考readme
+（1）选择一个数据集UIEB, EUVP, UWCNN, Sea-thru, RUIE，使用data_split.py将数据集分成readme中要求的格式
+（2）LA文件夹数据使用estimate_illumination.py生成
+（3）candidate文件夹数据使用create_candidate.py生成
+
+2.运行test
+（1）需要在系统安装cuda,不然mmcv无法安装  
+--》 cuda cudnn安装方法https://blog.csdn.net/weixin_37926734/article/details/123033286?spm=1001.2014.3001.5506
+(2)图片尺寸太大会爆显存，统一裁剪到320x320

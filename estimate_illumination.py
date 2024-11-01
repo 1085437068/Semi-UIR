@@ -21,14 +21,14 @@ def luminance_estimation(img):
     return L
 
 
-input_dir = "data/test/unlabeled/input"
+input_dir = "data/UIEB/test/benchmarkA/input/"
 input_lists = glob(join(input_dir, "*.*"))
-result_dir = "data/test/unlabeled/LA/"
+result_dir = "data/UIEB/test/benchmarkA/LA/"
 for gen_path in zip(input_lists):
     img = Image.open(gen_path[0])
-    img_name = gen_path[0].split('/')[4]
+    img_name = gen_path[0].split('/')[-1]
     L = luminance_estimation(img)
     ndar = Image.fromarray(L)
-    ndar.save(os.path.join(result_path, img_name))
+    ndar.save(os.path.join(result_dir, img_name))
 
 print('finished!')
