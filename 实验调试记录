@@ -4,6 +4,15 @@
 （3）candidate文件夹数据使用create_candidate.py生成
 
 2.运行test
+虚拟环境pt181：
+pip install torch==1.8.1+cu111 torchvision==0.9.1+cu111 torchaudio==0.8.1 -f https://download.pytorch.org/whl/torch_stable.html
 （1）需要在系统安装cuda,不然mmcv无法安装  
 --》 cuda cudnn安装方法https://blog.csdn.net/weixin_37926734/article/details/123033286?spm=1001.2014.3001.5506
 (2)图片尺寸太大会爆显存，统一裁剪到320x320
+
+3.运行train
+(1)将 Image.ANTIALIAS 替换为 Image.Resampling.LANCZOS。Resampling.LANCZOS 是 ANTIALIAS 的替代品。
+(2)问题：ValueError: win_size exceeds image extent. Either ensure that your images are at least 7x7...
+解决方法：修改为ssim += structural_similarity(clean[i], recoverd[i], data_range=1, multichannel=True, win_size=3)
+(3)其他bug看git历史记录
+(4)pyiqa安装会自动安装cpu版本，安装完pyiqa后需要再重新把GPU版本安装回来pip install torch==1.8.1+cu111 torchvision==0.9.1+cu111 torchaudio==0.8.1 -f https://download.pytorch.org/whl/torch_stable.html

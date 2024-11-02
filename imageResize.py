@@ -30,12 +30,12 @@ def crop_images_to_320x320(input_folder, output_folder):
             cropped_img.save(output_path)
 
 # test图片
-input_folder = 'data/UIEB/test/benchmarkA/input'
-output_folder = 'data/UIEB/test/benchmarkA/input_320x320'
+# input_folder = 'data/UIEB/test/benchmarkA/input'
+# output_folder = 'data/UIEB/test/benchmarkA/input_320x320'
 
 # train图片 -- train文件夹
-#input_folder = '/home/hzc/CodeRepository/UnderwaterEnhancement/DeepLearning/CNN/UWEnhancement/DATA/UIEB/Train/train/origin'
-#output_folder = '/home/hzc/CodeRepository/UnderwaterEnhancement/DeepLearning/CNN/UWEnhancement/DATA/UIEB/Train/train'
+input_folder = 'data/UIEB/val/input_origin'
+output_folder = 'data/UIEB/val/input'
 
 # train图片 -- gt文件夹
 # input_folder = '/home/hzc/CodeRepository/UnderwaterEnhancement/DeepLearning/CNN/UWEnhancement/DATA/UIEB/Train/gt/origin'

@@ -76,9 +76,9 @@ class TrainLabeled(data.Dataset):
         B = Image.open(self.B_paths[index]).convert("RGB")
         C = Image.open(self.C_paths[index]).convert("RGB")
         # resize
-        resized_a = A.resize((280, 280), Image.ANTIALIAS)
-        resized_b = B.resize((280, 280), Image.ANTIALIAS)
-        resized_c = C.resize((280, 280), Image.ANTIALIAS)
+        resized_a = A.resize((280, 280), Image.Resampling.LANCZOS)
+        resized_b = B.resize((280, 280), Image.Resampling.LANCZOS)
+        resized_c = C.resize((280, 280), Image.Resampling.LANCZOS)
         # crop the training image into fineSize
         w, h = resized_a.size
         x, y = randrange(w - self.fineSize + 1), randrange(h - self.fineSize + 1)
@@ -124,8 +124,8 @@ class TrainUnlabeled(data.Dataset):
         A = Image.open(self.A_paths[index]).convert("RGB")
         C = Image.open(self.C_paths[index]).convert("RGB")
         candidate = Image.open(self.D_paths[index]).convert('RGB')
-        A = A.resize((self.fineSize, self.fineSize), Image.ANTIALIAS)
-        C = C.resize((self.fineSize, self.fineSize), Image.ANTIALIAS)
+        A = A.resize((self.fineSize, self.fineSize), Image.Resampling.LANCZOS)
+        C = C.resize((self.fineSize, self.fineSize), Image.Resampling.LANCZOS)
         # strong augmentation
         strong_data = data_aug(A)
         tensor_w = self.transform(A)
@@ -164,9 +164,9 @@ class ValLabeled(data.Dataset):
         A = Image.open(self.A_paths[index]).convert("RGB")
         B = Image.open(self.B_paths[index]).convert("RGB")
         C = Image.open(self.C_paths[index]).convert("RGB")
-        resized_a = A.resize((self.fineSize, self.fineSize), Image.ANTIALIAS)
-        resized_b = B.resize((self.fineSize, self.fineSize), Image.ANTIALIAS)
-        resized_c = C.resize((self.fineSize, self.fineSize), Image.ANTIALIAS)
+        resized_a = A.resize((self.fineSize, self.fineSize), Image.Resampling.LANCZOS)
+        resized_b = B.resize((self.fineSize, self.fineSize), Image.Resampling.LANCZOS)
+        resized_c = C.resize((self.fineSize, self.fineSize), Image.Resampling.LANCZOS)
         # transform to (0, 1)
         tensor_a = self.transform(resized_a)
         tensor_b = self.transform(resized_b)

@@ -71,8 +71,11 @@ class Trainer:
 
     def get_reliable(self, teacher_predict, student_predict, positive_list, p_name, score_r):
         N = teacher_predict.shape[0]
-        score_t = self.iqa_metric(teacher_predict).detach().cpu().numpy()
-        score_s = self.iqa_metric(student_predict).detach().cpu().numpy()
+        #score_t = self.iqa_metric(teacher_predict).detach().cpu().numpy()
+        #score_s = self.iqa_metric(student_predict).detach().cpu().numpy()   
+        score_t = np.array([self.iqa_metric(teacher_predict[i].unsqueeze(0)).detach().cpu().numpy()for i in range(N)])
+        score_s = np.array([self.iqa_metric(student_predict[i].unsqueeze(0)).detach().cpu().numpy()for i in range(N)])
+        score_r = np.full(N, score_r)
         positive_sample = positive_list.clone()
         for idx in range(0, N):
             if score_t[idx] > score_s[idx]:
